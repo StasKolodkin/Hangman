@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all format
 
 # flags
 COMPILEFLAGS=-Wall -Werror
@@ -10,3 +10,6 @@ bin/hangman: obj/main.o
 
 obj/main.o: src/main.cpp
 	$(CXX) $(COMPILEFLAGS) -c $< -o $@
+
+format:
+	find . -type f -name '*.cpp' -o -name '*.h' | xargs clang-format -i
