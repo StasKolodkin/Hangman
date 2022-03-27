@@ -1,15 +1,32 @@
-.PHONY: all format
+.PHONY: all format clean run test
+
+#directories
+OBJ=obj
+SRC=src
+TEST=test
 
 # flags
 COMPILEFLAGS=-Wall -Werror
 
-all: bin/hangman
+#sources
+TEST_SOURCES=$(shell find $(TEST)/ -type f -name '*.cpp')
 
-bin/hangman: obj/main.o
+#objects
+TEST_OBJECTS=$(addprefix $(OBJ)/, $(patsubst %.cpp, %.o, $(TEST_SOURCES)))
+
+all: format bin/hangman bin/test_hangman
+
+bin/hangman: obj/src/main.o
 	$(CXX) $(COMPILEFLAGS) $^ -o $@
 
-obj/main.o: src/main.cpp
+obj/src/main.o: src/main.cpp
 	$(CXX) $(COMPILEFLAGS) -c $< -o $@
+
+bin/test_hangman: $(TEST_OBJECTS)
+	$(CXX) $(COMPILEFLAGS) $^ -o $@
+
+obj/test/%.o: test/%.cpp
+	$(CXX) $(COMPILEFLAGS) -I src -I thirdparty -c $< -o $@
 
 format:
 	find . -type f -name '*.cpp' -o -name '*.h' | xargs clang-format -i
@@ -22,3 +39,6 @@ clean:
 
 run:
 	cd bin && ./hangman
+
+test:
+	cd bin && ./test_hangman
