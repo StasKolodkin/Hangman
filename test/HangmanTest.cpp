@@ -61,3 +61,32 @@ TEST_CASE("Received symbol is not a letter", "[hangman_class]")
     }
     REQUIRE(errorMessage == "The received symbol is not a letter!");
 }
+
+TEST_CASE("Win", "[hangman_class]")
+{
+    Hangman hangman;
+    HangmanState startState = hangman.start("Win");
+    hangman.checkLetter('w');
+    hangman.checkLetter('I');
+    HangmanState finalState = hangman.checkLetter('N');
+    REQUIRE(hangman.isGameOver());
+    REQUIRE(startState.lives == finalState.lives);
+    REQUIRE(finalState.guessedLetters == "WIN");
+    REQUIRE(finalState.hiddenWord == "WIN");
+}
+
+TEST_CASE("Lose", "[hangman_class]")
+{
+    Hangman hangman;
+    HangmanState startState = hangman.start("loSE");
+    hangman.checkLetter('z');
+    hangman.checkLetter('x');
+    hangman.checkLetter('c');
+    hangman.checkLetter('v');
+    hangman.checkLetter('b');
+    HangmanState finalState = hangman.checkLetter('n');
+    REQUIRE(hangman.isGameOver());
+    REQUIRE(finalState.lives == 0);
+    REQUIRE(startState.hiddenWord == finalState.hiddenWord);
+    REQUIRE(finalState.guessedLetters == "ZXCVBN");
+}
