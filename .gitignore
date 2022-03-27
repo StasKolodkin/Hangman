@@ -6,6 +6,7 @@ bin/*
 obj/*
 !obj/.keep
 !obj/src/.keep
+!obj/test/.keep
 
 #IDE
 .vscode
