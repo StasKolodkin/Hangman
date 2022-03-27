@@ -90,3 +90,15 @@ TEST_CASE("Lose", "[hangman_class]")
     REQUIRE(startState.hiddenWord == finalState.hiddenWord);
     REQUIRE(finalState.guessedLetters == "ZXCVBN");
 }
+
+TEST_CASE("The letter has already been guessed", "[hangman_class]")
+{
+    std::string errorMessage;
+    Hangman hangman;
+    hangman.start("guessed");
+    HangmanState first = hangman.checkLetter('s');
+    HangmanState second = hangman.checkLetter('s');
+    REQUIRE(first.lives == second.lives);
+    REQUIRE(first.guessedLetters == second.guessedLetters);
+    REQUIRE(first.hiddenWord == second.hiddenWord);
+}
