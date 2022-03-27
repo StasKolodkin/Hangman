@@ -48,3 +48,16 @@ TEST_CASE("Using checkLetter but game is not started", "[hangman_class]")
     }
     REQUIRE(errorMessage == "Game is not started!");
 }
+
+TEST_CASE("Received symbol is not a letter", "[hangman_class]")
+{
+    std::string errorMessage;
+    try {
+        Hangman hangman;
+        hangman.start("Good");
+        hangman.checkLetter('%');
+    } catch (const std::runtime_error& e) {
+        errorMessage = e.what();
+    }
+    REQUIRE(errorMessage == "The received symbol is not a letter!");
+}
