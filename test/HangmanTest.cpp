@@ -36,3 +36,15 @@ TEST_CASE(
     REQUIRE(errorMessage
             == "The word contains characters that are not letters!");
 }
+
+TEST_CASE("Using checkLetter but game is not started", "[hangman_class]")
+{
+    std::string errorMessage;
+    try {
+        Hangman hangman;
+        hangman.checkLetter('%');
+    } catch (const std::runtime_error& e) {
+        errorMessage = e.what();
+    }
+    REQUIRE(errorMessage == "Game is not started!");
+}
