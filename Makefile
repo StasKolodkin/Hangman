@@ -13,3 +13,6 @@ obj/main.o: src/main.cpp
 
 format:
 	find . -type f -name '*.cpp' -o -name '*.h' | xargs clang-format -i
+
+run:
+	cd bin && ./hangman
