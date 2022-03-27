@@ -9,19 +9,23 @@ TEST=test
 COMPILEFLAGS=-Wall -Werror
 
 #sources
+SOURCES=$(shell find $(SRC)/ -type f -name '*.cpp')
 TEST_SOURCES=$(shell find $(TEST)/ -type f -name '*.cpp')
 
 #objects
+OBJECTS=$(addprefix $(OBJ)/, $(patsubst %.cpp, %.o, $(SOURCES)))
 TEST_OBJECTS=$(addprefix $(OBJ)/, $(patsubst %.cpp, %.o, $(TEST_SOURCES)))
 
 all: format bin/hangman bin/test_hangman
 
-bin/hangman: obj/src/main.o
+#application
+bin/hangman: $(OBJECTS)
 	$(CXX) $(COMPILEFLAGS) $^ -o $@
 
-obj/src/main.o: src/main.cpp
-	$(CXX) $(COMPILEFLAGS) -c $< -o $@
+obj/src/%.o: src/%.cpp
+	$(CXX) $(COMPILEFLAGS) -I src -c $< -o $@
 
+#test
 bin/test_hangman: $(TEST_OBJECTS)
 	$(CXX) $(COMPILEFLAGS) $^ -o $@
 
