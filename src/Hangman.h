@@ -32,6 +32,13 @@ public:
         std::transform(word.begin(), word.end(), word.begin(), ::toupper);
         return state;
     }
+    bool isGameOver()
+    {
+        if (state.hiddenWord.find('_') == std::string::npos)
+            return true;
+        else
+            return state.lives == 0;
+    }
 };
 
 #endif
