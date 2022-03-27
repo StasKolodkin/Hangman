@@ -115,3 +115,16 @@ TEST_CASE(
     REQUIRE((startState.guessedLetters + "Z") == updatedState.guessedLetters);
     REQUIRE(startState.hiddenWord == updatedState.hiddenWord);
 }
+
+TEST_CASE(
+        "The letter is contained in the word that was guessed",
+        "[hangman_class]")
+{
+    std::string errorMessage;
+    Hangman hangman;
+    HangmanState startState = hangman.start("leTTer");
+    HangmanState updatedState = hangman.checkLetter('t');
+    REQUIRE(startState.lives == updatedState.lives);
+    REQUIRE((startState.guessedLetters + "T") == updatedState.guessedLetters);
+    REQUIRE(updatedState.hiddenWord == "__TT__");
+}
