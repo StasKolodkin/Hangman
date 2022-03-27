@@ -33,13 +33,34 @@ private:
         std::cout << std::endl;
         setForegroundColor(Colors::Reset);
     }
+    void drawRules()
+    {
+        setBackgroundColor(Colors::Black);
+        setForegroundColor(Colors::Green);
+        std::cout << std::endl << "RULES:" << std::endl;
+        std::cout
+                << "The word is guessed.\n\n"
+                   "You suggest a letter that can be part of this word. If "
+                   "there "
+                   "is such a letter in the word, then it is written over the "
+                   "lines corresponding to this letter - as many times as it "
+                   "occurs in the word. If there is no such letter, then a "
+                   "circle in a loop representing the head is added to the "
+                   "gallows. For each subsequent incorrect answer, one part of "
+                   "the torso is added to the gallows.\n\n"
+                   "If the torso in the gallows is drawn completely, then the "
+                   "guessing player loses, it is considered hanged. If the "
+                   "player manages to guess the word, he wins.\n"
+                << std::endl;
+        setBackgroundColor(Colors::Reset);
+        setForegroundColor(Colors::Reset);
+    }
 
 public:
     void show()
     {
         std::setbuf(stdout, nullptr);
         cleanScreen();
-        drawLogo();
     }
 };
 
