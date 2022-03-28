@@ -15,7 +15,7 @@ private:
     {
         if (word.empty())
             return false;
-        for (auto i = 0; i < word.length(); ++i)
+        for (u_long i = 0; i < word.length(); ++i)
             if (toupper(word[i]) < 'A' || toupper(word[i]) > 'Z')
                 return false;
         return true;
