@@ -29,7 +29,7 @@ private:
     char getChar()
     {
         termios userTerminalSettings{};
-        int vtime = 0, vmin = 1;
+        int timeout = 0, charactersCount = 1;
 
         if (tcgetattr(0, &userTerminalSettings) != 0)
             throw std::runtime_error("Unable to get terminal settings!");
@@ -37,23 +37,23 @@ private:
         termios customTerminalSettings = userTerminalSettings;
 
         customTerminalSettings.c_lflag &= ~ICANON;
-        customTerminalSettings.c_cc[VTIME] = vtime;
-        customTerminalSettings.c_cc[VMIN] = vmin;
+        customTerminalSettings.c_cc[VTIME] = timeout;
+        customTerminalSettings.c_cc[VMIN] = charactersCount;
         customTerminalSettings.c_lflag &= ~ECHO;
         customTerminalSettings.c_lflag |= ISIG;
 
         if (tcsetattr(0, TCSANOW, &customTerminalSettings) != 0)
             throw std::runtime_error("Unable to set custom terminal settings!");
 
-        char buf[8]{};
-        read(STDIN_FILENO, buf, 8);
+        char userInput[8]{};
+        read(STDIN_FILENO, userInput, 8);
 
         if (tcsetattr(0, TCSANOW, &userTerminalSettings) != 0)
             throw std::runtime_error(
                     "Unable to restore user terminal settings!");
 
-        if (toupper(buf[0]) >= 'A' && toupper(buf[0]) <= 'Z')
-            return buf[0];
+        if (toupper(userInput[0]) >= 'A' && toupper(userInput[0]) <= 'Z')
+            return userInput[0];
         else
             return '\0';
     }
