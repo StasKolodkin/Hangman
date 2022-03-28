@@ -98,7 +98,7 @@ private:
     void drawGameOverBanner(short lives)
     {
         if (lives == 0) {
-            setForegroundColor(Colors::Green);
+            setForegroundColor(Colors::Red);
             std::cout << "__   _____  _   _   ____ ___ _____ ____\n"
                          "\\ \\ / / _ \\| | | | |  _ \\_ _| ____|  _ \\\n"
                          " \\ V / | | | | | | | | | | ||  _| | | | |\n"
@@ -106,7 +106,7 @@ private:
                          "  |_| \\___/ \\___/  |____/___|_____|____/";
             std::cout << std::endl;
         } else {
-            setForegroundColor(Colors::Red);
+            setForegroundColor(Colors::Green);
             std::cout << "__   _____  _   _  __        _____ _   _\n"
                          "\\ \\ / / _ \\| | | | \\ \\      / /_ _| \\ | |\n"
                          " \\ V / | | | | | |  \\ \\ /\\ / / | ||  \\| |\n"
