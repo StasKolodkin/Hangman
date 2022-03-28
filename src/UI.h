@@ -5,6 +5,7 @@
 #include "entity/Colors.h"
 #include <csignal>
 #include <iostream>
+#include <sys/types.h>
 #include <termios.h>
 
 class UI {
@@ -161,7 +162,7 @@ private:
     {
         setForegroundColor(Colors::Magenta);
         std::cout << "Guessed:  ";
-        for (auto i = 0; i < guessedLetters.length(); ++i) {
+        for (u_long i = 0; i < guessedLetters.length(); ++i) {
             if (i != 0)
                 std::cout << ", ";
             std::cout << guessedLetters[i];
