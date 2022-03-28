@@ -184,6 +184,7 @@ private:
 public:
     void show()
     {
+        wordHandler.importFromFIle("words.txt");
         setBackgroundColor(Colors::Black);
         std::setbuf(stdout, nullptr);
         drawWelcomeScreen();
