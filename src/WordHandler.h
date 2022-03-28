@@ -1,6 +1,7 @@
 #ifndef WORDHANLER_H
 #define WORDHANLER_H
 
+#include <fstream>
 #include <random>
 #include <stdexcept>
 #include <string>
@@ -38,6 +39,18 @@ public:
             throw std::runtime_error(
                     "The word contains characters that are not letters <" + word
                     + ">!");
+    }
+    void importFromFIle(const std::string& path)
+    {
+        std::ifstream in(path);
+        if (!in.is_open())
+            throw std::runtime_error("Unable to open file <" + path + "> !");
+
+        std::string word;
+        while (in.good()) {
+            in >> word;
+            addWord(word);
+        }
     }
 };
 
