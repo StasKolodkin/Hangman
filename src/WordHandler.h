@@ -30,6 +30,15 @@ public:
         std::uniform_int_distribution<u_long> distribution(0, words.size());
         return words[distribution(generator)];
     }
+    void addWord(const std::string& word)
+    {
+        if (wordIsValid(word))
+            words.push_back(word);
+        else
+            throw std::runtime_error(
+                    "The word contains characters that are not letters <" + word
+                    + ">!");
+    }
 };
 
 #endif
