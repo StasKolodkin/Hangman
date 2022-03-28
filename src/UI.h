@@ -2,16 +2,18 @@
 #define UI_H
 
 #include "Hangman.h"
+#include "WordHandler.h"
 #include "entity/Colors.h"
 #include <csignal>
 #include <iostream>
-#include <unistd.h>
 #include <sys/types.h>
 #include <termios.h>
+#include <unistd.h>
 
 class UI {
 private:
     Hangman hangman;
+    WordHandler wordHandler;
     void cleanScreen()
     {
         std::cout << "\033c";
@@ -182,11 +184,12 @@ private:
 public:
     void show()
     {
+        wordHandler.importFromFIle("words.txt");
         setBackgroundColor(Colors::Black);
         std::setbuf(stdout, nullptr);
         drawWelcomeScreen();
 
-        auto currentState = hangman.start("Anything");
+        auto currentState = hangman.start(wordHandler.getRandomWord());
         char letter;
 
         draw(currentState);

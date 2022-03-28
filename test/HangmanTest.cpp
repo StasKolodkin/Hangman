@@ -3,7 +3,6 @@
 
 TEST_CASE("Correctness of initialization", "[hangman_class]")
 {
-    std::string errorMessage;
     Hangman hangman;
     HangmanState startState = hangman.start("initialization");
     REQUIRE(startState.lives == 6);
@@ -93,7 +92,6 @@ TEST_CASE("Lose", "[hangman_class]")
 
 TEST_CASE("The letter has already been guessed", "[hangman_class]")
 {
-    std::string errorMessage;
     Hangman hangman;
     hangman.start("guessed");
     HangmanState first = hangman.checkLetter('s');
@@ -107,7 +105,6 @@ TEST_CASE(
         "The letter is not contained in the word that was guessed",
         "[hangman_class]")
 {
-    std::string errorMessage;
     Hangman hangman;
     HangmanState startState = hangman.start("contained");
     HangmanState updatedState = hangman.checkLetter('z');
@@ -120,7 +117,6 @@ TEST_CASE(
         "The letter is contained in the word that was guessed",
         "[hangman_class]")
 {
-    std::string errorMessage;
     Hangman hangman;
     HangmanState startState = hangman.start("leTTer");
     HangmanState updatedState = hangman.checkLetter('t');
