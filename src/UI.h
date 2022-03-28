@@ -68,7 +68,6 @@ private:
     }
     void drawRules()
     {
-        setBackgroundColor(Colors::Black);
         setForegroundColor(Colors::Green);
         std::cout << std::endl << "RULES:" << std::endl;
         std::cout
@@ -85,15 +84,24 @@ private:
                    "guessing player loses, it is considered hanged. If the "
                    "player manages to guess the word, he wins.\n"
                 << std::endl;
-        setBackgroundColor(Colors::Reset);
         setForegroundColor(Colors::Reset);
+    }
+    void drawWelcomeScreen()
+    {
+        cleanScreen();
+        drawLogo();
+        drawRules();
+        std::cout << "Press any key to continue..." << std::endl;
+        getChar();
     }
 
 public:
     void show()
     {
+        setBackgroundColor(Colors::Black);
         std::setbuf(stdout, nullptr);
-        cleanScreen();
+        drawWelcomeScreen();
+        setBackgroundColor(Colors::Reset);
     }
 };
 
