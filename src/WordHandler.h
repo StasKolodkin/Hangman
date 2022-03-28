@@ -28,7 +28,7 @@ public:
             throw std::runtime_error("No word base!");
         std::random_device rd;
         std::mt19937 generator(rd());
-        std::uniform_int_distribution<u_long> distribution(0, words.size());
+        std::uniform_int_distribution<u_long> distribution(0, words.size() - 1);
         return words[distribution(generator)];
     }
     void addWord(const std::string& word)
