@@ -2,6 +2,7 @@
 #define UI_H
 
 #include "Hangman.h"
+#include "WordHandler.h"
 #include "entity/Colors.h"
 #include <csignal>
 #include <iostream>
@@ -12,6 +13,7 @@
 class UI {
 private:
     Hangman hangman;
+    WordHandler wordHandler;
     void cleanScreen()
     {
         std::cout << "\033c";
@@ -186,7 +188,7 @@ public:
         std::setbuf(stdout, nullptr);
         drawWelcomeScreen();
 
-        auto currentState = hangman.start("Anything");
+        auto currentState = hangman.start(wordHandler.getRandomWord());
         char letter;
 
         draw(currentState);
