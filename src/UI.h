@@ -94,6 +94,28 @@ private:
         std::cout << "Press any key to continue..." << std::endl;
         getChar();
     }
+    void drawGameOverBanner(short lives)
+    {
+        if (lives == 0) {
+            setForegroundColor(Colors::Green);
+            std::cout << "__   _____  _   _   ____ ___ _____ ____\n"
+                         "\\ \\ / / _ \\| | | | |  _ \\_ _| ____|  _ \\\n"
+                         " \\ V / | | | | | | | | | | ||  _| | | | |\n"
+                         "  | || |_| | |_| | | |_| | || |___| |_| |\n"
+                         "  |_| \\___/ \\___/  |____/___|_____|____/";
+            std::cout << std::endl;
+        } else {
+            setForegroundColor(Colors::Red);
+            std::cout << "__   _____  _   _  __        _____ _   _\n"
+                         "\\ \\ / / _ \\| | | | \\ \\      / /_ _| \\ | |\n"
+                         " \\ V / | | | | | |  \\ \\ /\\ / / | ||  \\| |\n"
+                         "  | || |_| | |_| |   \\ V  V /  | || |\\  |\n"
+                         "  |_| \\___/ \\___/     \\_/\\_/  |___|_| \\_|";
+            std::cout << std::endl;
+        }
+        setForegroundColor(Colors::Reset);
+        std::cout << std::endl;
+    }
 
 public:
     void show()
