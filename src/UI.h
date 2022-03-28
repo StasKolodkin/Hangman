@@ -183,6 +183,18 @@ public:
         setBackgroundColor(Colors::Black);
         std::setbuf(stdout, nullptr);
         drawWelcomeScreen();
+
+        auto currentState = hangman.start("Anything");
+        char letter;
+
+        draw(currentState);
+        while (!hangman.isGameOver()) {
+            if ((letter = getChar()) != '\0')
+                currentState = hangman.checkLetter(letter);
+            draw(currentState);
+        }
+
+        drawGameOverBanner(currentState.lives);
         setBackgroundColor(Colors::Reset);
     }
 };
