@@ -10,6 +10,16 @@ class WordHandler {
 private:
     std::vector<std::string> words;
 
+    bool wordIsValid(const std::string& word)
+    {
+        if (word.empty())
+            return false;
+        for (auto i = 0; i < word.length(); ++i)
+            if (toupper(word[i]) < 'A' || toupper(word[i]) > 'Z')
+                return false;
+        return true;
+    }
+
 public:
     std::string getRandomWord()
     {
