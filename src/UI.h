@@ -5,6 +5,7 @@
 #include "entity/Colors.h"
 #include <csignal>
 #include <iostream>
+#include <unistd.h>
 #include <sys/types.h>
 #include <termios.h>
 
