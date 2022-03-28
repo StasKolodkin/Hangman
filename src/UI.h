@@ -149,6 +149,12 @@ private:
             picture[rightLegPos] = '\\';
         std::cout << picture << std::endl;
     }
+    void drawHiddenWord(const std::string& hiddenWord)
+    {
+        setForegroundColor(Colors::Green);
+        std::cout << "   Word:  " << hiddenWord << std::endl << std::endl;
+        setForegroundColor(Colors::Reset);
+    }
 
 public:
     void show()
