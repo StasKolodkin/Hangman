@@ -155,6 +155,18 @@ private:
         std::cout << "   Word:  " << hiddenWord << std::endl << std::endl;
         setForegroundColor(Colors::Reset);
     }
+    void drawGuessedLetters(const std::string& guessedLetters)
+    {
+        setForegroundColor(Colors::Magenta);
+        std::cout << "Guessed:  ";
+        for (auto i = 0; i < guessedLetters.length(); ++i) {
+            if (i != 0)
+                std::cout << ", ";
+            std::cout << guessedLetters[i];
+        }
+        std::cout << std::endl << std::endl;
+        setForegroundColor(Colors::Reset);
+    }
 
 public:
     void show()
