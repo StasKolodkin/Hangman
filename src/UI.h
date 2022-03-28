@@ -118,6 +118,7 @@ private:
     }
     void drawHangmanPicture(short lives)
     {
+        setForegroundColor(Colors::White);
         short headPos = 46;
         short bodyPos = 59;
         short leftHandPos = 44;
@@ -148,6 +149,7 @@ private:
         if (lives < 1)
             picture[rightLegPos] = '\\';
         std::cout << picture << std::endl;
+        setForegroundColor(Colors::Reset);
     }
     void drawHiddenWord(const std::string& hiddenWord)
     {
@@ -166,6 +168,13 @@ private:
         }
         std::cout << std::endl << std::endl;
         setForegroundColor(Colors::Reset);
+    }
+    void draw(const HangmanState& currentState)
+    {
+        cleanScreen();
+        drawHangmanPicture(currentState.lives);
+        drawHiddenWord(currentState.hiddenWord);
+        drawGuessedLetters(currentState.guessedLetters);
     }
 
 public:
