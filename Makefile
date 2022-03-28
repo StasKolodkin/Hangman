@@ -21,6 +21,7 @@ all: format bin/hangman bin/test_hangman
 #application
 bin/hangman: $(OBJECTS)
 	$(CXX) $(COMPILEFLAGS) $^ -o $@
+	cp words.txt bin/words.txt
 
 obj/src/%.o: src/%.cpp
 	$(CXX) $(COMPILEFLAGS) -I src -c $< -o $@
