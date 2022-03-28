@@ -116,6 +116,39 @@ private:
         setForegroundColor(Colors::Reset);
         std::cout << std::endl;
     }
+    void drawHangmanPicture(short lives)
+    {
+        short headPos = 46;
+        short bodyPos = 59;
+        short leftHandPos = 44;
+        short rightHandPos = 48;
+        short leftLegPos = 71;
+        short rightLegPos = 73;
+        std::string picture
+                = "            \n"
+                  "  ______    \n"
+                  "  |    |    \n"
+                  "  |         \n"
+                  "  |         \n"
+                  "  |         \n"
+                  "  |         \n"
+                  "__|_____    \n"
+                  "|       |___\n"
+                  "|__________|\n";
+        if (lives < 6)
+            picture[headPos] = 'O';
+        if (lives < 5)
+            picture[bodyPos] = '|';
+        if (lives < 4)
+            picture[leftHandPos] = '\\';
+        if (lives < 3)
+            picture[rightHandPos] = '/';
+        if (lives < 2)
+            picture[leftLegPos] = '/';
+        if (lives < 1)
+            picture[rightLegPos] = '\\';
+        std::cout << picture << std::endl;
+    }
 
 public:
     void show()
